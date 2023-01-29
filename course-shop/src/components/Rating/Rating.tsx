@@ -1,9 +1,15 @@
-import { RatingProps } from './Rating.props';
+import {RatingProps} from './Rating.props';
 import styles from './Rating.module.css';
 import cn from 'classnames';
-import { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef, useRef } from 'react';
+import {ForwardedRef, forwardRef, KeyboardEvent, useEffect, useRef, useState} from 'react';
 
-export const Rating = forwardRef(({ isEditable = false,  rating, setRating, tabIndex, ...props }: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+export const Rating = forwardRef(({
+                                      isEditable = false,
+                                      rating,
+                                      setRating,
+                                      tabIndex,
+                                      ...props
+                                  }: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
     const ratingArrayRef = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -44,7 +50,9 @@ export const Rating = forwardRef(({ isEditable = false,  rating, setRating, tabI
                     aria-label={isEditable ? 'Укажите рейтинг' : ('рейтинг' + rating)}
                     aria-valuemin={1}
                 >
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill='.filled' width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 17l-5.878 3.59 1.598-6.7-5.23-4.48 6.865-.55L12 2.5l2.645 6.36 6.866.55-5.231 4.48 1.598 6.7z" /></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill='.filled' width="24" height="24"><path
+                    fill="none" d="M0 0h24v24H0z"/><path
+                    d="M12 17l-5.878 3.59 1.598-6.7-5.23-4.48 6.865-.55L12 2.5l2.645 6.36 6.866.55-5.231 4.48 1.598 6.7z"/></svg>
 				</span>
 
             );
@@ -87,9 +95,7 @@ export const Rating = forwardRef(({ isEditable = false,  rating, setRating, tabI
     };
 
     return (
-        <div {...props} ref={ref} className={cn(styles.ratingWrapper, {
-
-        })}>
+        <div {...props} ref={ref} className={cn(styles.ratingWrapper, {})}>
             {ratingArray.map((r, i) => (<span key={i}>{r}</span>))}
         </div>
     );
